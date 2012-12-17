@@ -9,6 +9,7 @@
     "express": "3.0.0",
     "jade": "*",
     "ejs": "~0.8.3",
-    "xml-crypto": "0.0.9"
+    "xml-crypto": "0.0.9",
+    "passport-wsfed-saml2": "~0.3.3"
   }
 }
