@@ -7,7 +7,11 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
+  , fs = require('fs')
   , path = require('path');
+
+  var SignedXml = require('xml-crypto').SignedXml;  
+
 
 var app = express();
 
@@ -28,7 +32,17 @@ app.configure('development', function(){
 });
 
 app.get('/wsfed', function(req, res) {
-  res.render('issue', { appEndpoint: 'http://sp-auth10/_trust/'})
+  //var token = fs.readFileSync(__dirname +  '/token.xml');
+  var token = fs.readFileSync(__dirname +  '/assertion.xml', "utf8");
+
+    var sig = new SignedXml({signatureAlgorithm: "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"})
+    sig.addReference("//*[local-name(.)='Assertion']")    
+    sig.signingKey = fs.readFileSync(__dirname + "/auth10.pem")
+    sig.computeSignature(token)
+    fs.writeFileSync("signed.xml", sig.getSignedXml())
+
+    res.send('ok');
+  //res.render('issue2', { appEndpoint: 'http://sp-auth10/_trust/', token: token})
 });
 
 
