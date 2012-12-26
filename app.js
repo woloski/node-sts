@@ -57,9 +57,11 @@ app.get('/wsfed', function(req, res) {
       
       console.log(profile);
     });
-
-    res.send('ok');
-  //res.render('issue2', { appEndpoint: 'http://sp-auth10/_trust/', token: token})
+    //res.send('ok');
+  
+    var rstr = '<t:RequestSecurityTokenResponse Context="/" xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust"><t:RequestedSecurityToken>' + 
+                signed + '</t:RequestedSecurityToken></t:RequestSecurityTokenResponse>'
+  res.render('issue2', { appEndpoint: 'http://sp-auth10/_trust/', token: rstr})
 });
 
 
