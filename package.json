@@ -9,7 +9,11 @@
     "express": "3.0.0",
     "jade": "*",
     "ejs": "~0.8.3",
-    "xml-crypto": "0.0.9",
-    "passport-wsfed-saml2": "~0.3.3"
+    "xml-crypto": "git+https://github.com/auth10/xml-crypto.git",
+    "passport-wsfed-saml2": "~0.3.3",
+    "passport": "~0.1.15",
+    "xmldom": "~0.1.13",
+    "moment": "~1.7.2",
+    "should": "~1.2.1"
   }
 }
